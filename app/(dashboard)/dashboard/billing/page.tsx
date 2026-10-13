@@ -13,6 +13,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { BillingForm } from "@/components/billing-form"
+import { BillingHistory } from "@/components/billing-history"
 import { DashboardHeader } from "@/components/header"
 import { Icons } from "@/components/icons"
 import { DashboardShell } from "@/components/shell"
@@ -70,6 +71,7 @@ export default async function BillingPage() {
             isCanceled,
           }}
         />
+        <BillingHistory />
       </div>
     </DashboardShell>
   )
