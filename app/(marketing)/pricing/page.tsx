@@ -3,6 +3,7 @@ import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
+import { PricingFaq } from "@/components/pricing-faq"
 
 export const metadata = {
   title: "Pricing",
@@ -58,6 +59,7 @@ export default function PricingPage() {
           </Link>
         </div>
       </div>
+      <PricingFaq />
       <div className="mx-auto flex w-full max-w-[58rem] flex-col gap-4">
         <p className="max-w-[85%] leading-normal text-muted-foreground sm:leading-7">
           Taxonomy is a demo app.{" "}
