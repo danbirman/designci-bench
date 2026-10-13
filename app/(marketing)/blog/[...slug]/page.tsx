@@ -11,7 +11,9 @@ import Link from "next/link"
 import { env } from "@/env.mjs"
 import { absoluteUrl, cn, formatDate } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
+import { CopyLinkButton } from "@/components/copy-link-button"
 import { Icons } from "@/components/icons"
+import { ReadingTime } from "@/components/reading-time"
 
 interface PostPageProps {
   params: {
@@ -107,14 +109,18 @@ export default async function PostPage({ params }: PostPageProps) {
         See all posts
       </Link>
       <div>
-        {post.date && (
-          <time
-            dateTime={post.date}
-            className="block text-sm text-muted-foreground"
-          >
-            Published on {formatDate(post.date)}
-          </time>
-        )}
+        <div className="flex items-center justify-between gap-4">
+          <p className="text-sm text-muted-foreground">
+            {post.date && (
+              <time dateTime={post.date}>
+                Published on {formatDate(post.date)}
+              </time>
+            )}
+            {" · "}
+            <ReadingTime content={post.body.raw} />
+          </p>
+          <CopyLinkButton />
+        </div>
         <h1 className="mt-2 inline-block font-heading text-4xl leading-tight lg:text-5xl">
           {post.title}
         </h1>
