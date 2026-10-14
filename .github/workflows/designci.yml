@@ -1,0 +1,32 @@
+name: designci
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: designci-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  designci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      # designci is private, so the action is checked out with a read-only deploy key
+      # and run from a local path instead of `uses: danbirman/designci@main`.
+      - uses: actions/checkout@v4
+        with:
+          repository: danbirman/designci
+          ref: main
+          ssh-key: ${{ secrets.DESIGNCI_DEPLOY_KEY }}
+          path: .designci
+          persist-credentials: false
+      - uses: ./.designci
+        with:
+          render: "true"
