@@ -8,6 +8,7 @@ import { DashboardHeader } from "@/components/header"
 import { PostCreateButton } from "@/components/post-create-button"
 import { PostItem } from "@/components/post-item"
 import { DashboardShell } from "@/components/shell"
+import { UsageStats } from "@/components/usage-stats"
 
 export const metadata = {
   title: "Dashboard",
@@ -40,6 +41,10 @@ export default async function DashboardPage() {
       <DashboardHeader heading="Posts" text="Create and manage posts.">
         <PostCreateButton />
       </DashboardHeader>
+      <UsageStats
+        postCount={posts.length}
+        publishedCount={posts.filter((post) => post.published).length}
+      />
       <div>
         {posts?.length ? (
           <div className="divide-y divide-border rounded-md border">
