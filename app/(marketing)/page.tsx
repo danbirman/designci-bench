@@ -4,6 +4,7 @@ import { env } from "@/env.mjs"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
+import { LatestPosts } from "@/components/latest-posts"
 
 async function getGitHubStars(): Promise<string | null> {
   try {
@@ -221,6 +222,7 @@ export default async function IndexPage() {
           )}
         </div>
       </section>
+      <LatestPosts />
     </>
   )
 }
